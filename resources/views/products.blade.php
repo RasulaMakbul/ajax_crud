@@ -9,6 +9,7 @@
     <title>Ajax Crud</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
 </head>
 
 <body>
@@ -20,7 +21,7 @@
             <div class="col-md-8">
                 <h2 class="my-5 text-center">Laravel 9 crud using ajax</h2>
                 <a href="#" class="btn btn-outline-success my-3" data-bs-toggle="modal" data-bs-target="#addProductModal"><i class="las la-plus"></i></a>
-
+                <input type="text" name="search" id="search" class="form-control mb-3" placeholder="search here..">
                 <div class="table-data">
                     <table class="table table-bordered">
                         <thead>
@@ -34,7 +35,7 @@
                         <tbody>
                             @foreach($products as $key=>$product)
                             <tr>
-                                <td>{{$key+1}}</td>
+                                <td>{{$product->id}}</td>
                                 <td>{{$product->name}}</td>
                                 <td>{{$product->price}}</td>
                                 <td><a href="#" class="btn btn-outline-info update_product_form" data-bs-toggle="modal" data-bs-target="#updateProductModal" data-id="{{$product->id}}" data-name="{{$product->name}}" data-price="{{$product->price}}">
@@ -56,6 +57,7 @@
     @include('partials.add_product')
     @include('partials.update_product')
     @include('product_js')
+    {!! Toastr::message() !!}
 </body>
 
 </html>
